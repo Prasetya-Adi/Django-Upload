@@ -8,7 +8,6 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('upload/', views.upload, name='upload'),
 
     # Function Based View
     path('function/book/list', views.book_list, name='function-book-list'),

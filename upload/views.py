@@ -1,8 +1,7 @@
-from typing import List
+
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
-from django.core.files.storage import FileSystemStorage
-from django.views.generic import ListView, FormView, CreateView
+from django.views.generic import ListView, CreateView
 
 from .forms import BookForm
 from .models import Book
@@ -13,15 +12,6 @@ from .models import Book
 def index(request):
     return render(request, 'upload/index.html')
 
-
-def upload(request):
-    contex = {}
-    if request.method == 'POST':
-        UploadedFile = request.FILES['document']
-        fs = FileSystemStorage()
-        name = fs.save(UploadedFile.name, UploadedFile)
-        contex['url'] = fs.url(name)
-    return render(request, 'upload/upload.html', contex)
 
 # FUNCTION Based View
 

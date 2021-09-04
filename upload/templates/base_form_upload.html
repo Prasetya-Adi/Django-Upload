@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}<title>Home of Django Upload</title>{% endblock %}
+
+
+{% block content %}
+
+{% block h1 %}
+<H1>Book Upload</H1>
+{% endblock h1 %}
+
+<div class="card">
+    <h5 class="card-header">Upload File</h5>
+    <div class="card-body">
+        <form method='post' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <div class="mb-3">
+                {{form.title|as_crispy_field}}
+            </div>
+            <div class="mb-3">
+                {{form.author|as_crispy_field}}
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    {{form.pdf|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{form.cover|as_crispy_field}}
+                </div>
+            </div>
+            {% comment %} {{form|crispy}} {% endcomment %}
+            <button type="submit" class='btn btn-primary mt-2'>Upload Book</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

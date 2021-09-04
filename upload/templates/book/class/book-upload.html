@@ -1,20 +1,5 @@
-{% extends "base.html" %}
+{% extends "base_form_upload.html" %}
 
-{% load crispy_forms_tags %}
-
-{% block title %}<title>Home of Django Upload</title>{% endblock %}
-
-{% block content %}
+{% block h1 %}
 <H1>Class Book Upload</H1>
-
-<div class="card">
-    <h5 class="card-header">Upload File</h5>
-    <div class="card-body">
-        <form method='post' enctype='multipart/form-data'>
-            {% csrf_token %}
-            {{form|crispy}}
-            <button type="submit" class='btn btn-primary mt-2'>Upload Book</button>
-        </form>
-    </div>
-</div>
-{% endblock %}
+{% endblock h1 %}
