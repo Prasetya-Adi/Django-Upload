@@ -12,6 +12,7 @@
             <td>Title</td>
             <td>Author</td>
             <td>Download</td>
+            <td>Delete</td>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +27,13 @@
             </td>
             <td>{{book.title}}</td>
             <td>{{book.author}}</td>
-            <td><a href={{book.pdf.url}} class='btn btn-primary' target='_blank'>Download</a></td>
+            <td><a href={{book.pdf.url}} class='btn btn-primary btn-sm' target='_blank'>Download</a></td>
+            <td>
+                <form method='POST' action="{% url 'function-book-delete' book.pk %}">
+                    {% csrf_token %}
+                    <button class='btn btn-danger btn-sm' type='submit'>Delete</button>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
