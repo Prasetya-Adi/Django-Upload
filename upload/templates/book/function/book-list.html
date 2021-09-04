@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Home of Django Upload</title>{% endblock %}
+
+{% block content %}
+<H1>Function Book List</H1>
+
+<table class='table'>
+    <thead>
+        <tr>
+            <td>Cover</td>
+            <td>Title</td>
+            <td>Author</td>
+            <td>Download</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>
+                {% if book.cover %}
+                <img src="{{book.cover.url}}" alt="" style='width:100px'>
+                {% else %}
+                <span class='text-muted'>No Cover</span>
+                {% endif %}
+            </td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td><a href={{book.pdf.url}} class='btn btn-primary btn-sm' target='_blank'>Download</a></td>
+            <td>
+                <form method='POST' action="{% url 'function-book-delete' book.pk %}">
+                    {% csrf_token %}
+                    <button class='btn btn-danger btn-sm' type='submit'>Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
