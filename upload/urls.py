@@ -17,5 +17,7 @@ urlpatterns = [
     path('class/book/list', views.book_list_view.as_view(), name='class-book-list'),
     path('class/book/upload', views.book_upload_view.as_view(),
          name='class-book-upload'),
+    path('class/book/<int:pk>', views.book_delete_view.as_view(),
+         name='class-book-delete'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

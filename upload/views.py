@@ -2,6 +2,7 @@
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 from django.views.generic import ListView, CreateView
+from django.views.generic.edit import DeleteView, BaseDeleteView
 
 from .forms import BookForm_Function, BookForm_Class
 from .models import Book_Class, Book_Function
@@ -53,4 +54,9 @@ class book_list_view(ListView):
 class book_upload_view(CreateView):
     form_class = BookForm_Class
     template_name = "book/class/book-upload.html"
+    success_url = reverse_lazy('class-book-list')
+
+
+class book_delete_view(BaseDeleteView):
+    model = Book_Class
     success_url = reverse_lazy('class-book-list')
